@@ -65,6 +65,57 @@ function draw_chart_1() {
 
 
     //d3 stuff
+    var data = [
+        { name: 'CPU Score', score : cpu_data[select_cpu_1]["Benchmark"]},
+        { name: 'GPU Score', score : gpu_data[select_gpu_1]["Benchmark"]},
+        { name: 'RAM Score', score : ram_data[select_ram_1]["Benchmark"]}
+    ];
+
+    var padding = 60;
+    var width = 480;
+    var height = 400;
+    var radius = ((Math.min(width, height) - padding) / 2);
+    var donutWidth = 60;
+
+    var color = d3.scaleOrdinal(d3.schemeSet3);
+
+    var svg = d3.select('#pie_svg_1')
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height)
+        .append('g')
+        .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')');
+
+    var arc = d3.arc()
+        .innerRadius(radius - donutWidth)
+        .outerRadius(radius);
+          
+    var pie = d3.pie()
+        .value(function(d) { return d.score; })
+        .sort(null);
+
+    var text = svg.append('text')
+        .attr('text-anchor', 'middle')
+        .text('');
+
+    var path = svg.selectAll('path')
+        .data(pie(data))
+        .enter()
+        .append('path')
+        .attr('d', arc)
+        .style('stroke', 'black')
+        .style('stroke-width', '1')
+        .attr('fill', function(d, i) { 
+          return color(d.data.name);
+        })
+        .on('mouseover', function(d, i) {
+            d3.select(d.toElement).style('stroke-width', '4');
+            text.text(i.data.name + ": " + i.data.score);
+        })
+        .on('mouseout', function(d, i) {
+            d3.select(d.fromElement).style('stroke-width', '1');
+            text.text('');
+        });
 }
 
 function draw_chart_2() {
@@ -77,4 +128,55 @@ function draw_chart_2() {
 
 
     //d3 stuff
+    var data = [
+        { name: 'CPU Score', score : cpu_data[select_cpu_2]["Benchmark"]},
+        { name: 'GPU Score', score : gpu_data[select_gpu_2]["Benchmark"]},
+        { name: 'RAM Score', score : ram_data[select_ram_2]["Benchmark"]}
+    ];
+
+    var padding = 60;
+    var width = 480;
+    var height = 400;
+    var radius = ((Math.min(width, height) - padding) / 2);
+    var donutWidth = 60;
+
+    var color = d3.scaleOrdinal(d3.schemeSet3);
+
+    var svg = d3.select('#pie_svg_2')
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height)
+        .append('g')
+        .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')');
+
+    var arc = d3.arc()
+        .innerRadius(radius - donutWidth)
+        .outerRadius(radius);
+          
+    var pie = d3.pie()
+        .value(function(d) { return d.score; })
+        .sort(null);
+
+    var text = svg.append('text')
+        .attr('text-anchor', 'middle')
+        .text('');
+
+    var path = svg.selectAll('path')
+        .data(pie(data))
+        .enter()
+        .append('path')
+        .attr('d', arc)
+        .style('stroke', 'black')
+        .style('stroke-width', '1')
+        .attr('fill', function(d, i) { 
+          return color(d.data.name);
+        })
+        .on('mouseover', function(d, i) {
+            d3.select(d.toElement).style('stroke-width', '4');
+            text.text(i.data.name + ": " + i.data.score);
+        })
+        .on('mouseout', function(d, i) {
+            d3.select(d.fromElement).style('stroke-width', '1');
+            text.text('');
+        });
 }

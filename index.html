@@ -10,12 +10,12 @@
                 margin:auto;
                 width:1050px;
             }
-            #bar_div_left, #bar_div_right {
+            #div_left, #div_right {
                 float:left;
                 width:500px;
                 padding:10px;
             }
-            #bar_div_right {
+            #div_right {
                 float:right
             }
             svg {
@@ -32,8 +32,8 @@
             <h1 class="text-center">Honors Contract</h1>
             <h3 class="text-center">Nathaniel Rickertsen - nricker1@asu.edu</h3>
             <hr>
-            <div id="bar_div_left" class="border border-dark rounded bg-light shadow-sm">
-                    <svg id="bar_svg_1"></svg>
+            <div id="div_left" class="border border-dark rounded bg-light shadow-sm">
+                    <svg id="pie_svg_1"></svg>
                     <h4 class="text-center">Aggregate Score: <span id="agg_score_1">0</span></h4>
                     <label>CPU</label>
                     <select style="width: 100%" onchange="draw_chart_1()" id = "cpu_1"></select>
@@ -44,8 +44,8 @@
                     <label>RAM</label>
                     <select style="width: 100%" onchange="draw_chart_1()" id = "ram_1"></select>
             </div>
-            <div id="bar_div_right" class="border border-dark rounded bg-light shadow-sm">
-                    <svg id="bar_svg_2"></svg>
+            <div id="div_right" class="border border-dark rounded bg-light shadow-sm">
+                    <svg id="pie_svg_2"></svg>
                     <h4 class="text-center">Aggregate Score: <span id="agg_score_2">0</span></h4>
                     <label>CPU</label>
                     <select style="width: 100%" onchange="draw_chart_2()" id = "cpu_2"></select>
