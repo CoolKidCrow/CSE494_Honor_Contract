@@ -116,27 +116,42 @@ function draw_chart_1() {
 
     var barchart = g.selectAll('rect')
         .data(data)
-        .join('rect')
-        .attr('x', d => xScale(d.name))
-        .attr('y', d => yScale(d.score))
-        .attr('width', xScale.bandwidth())
-        .attr('height', d => innerHeight - yScale(d.score))
-        .style('fill', (d, i) => color(i))
-        .style('stroke', 'black')
-        .style('stroke-width', '1')
-        .on("mousemove", function (event, d) {
-            div.transition()
-                .duration(200)
-                .style("opacity", .9);
-            div.html(d.model + "<br/>" + "Score: " + d.score + "<br/>" + "Rank: " + d.rank)
-                .style("left", (event.pageX) + "px")
-                .style("top", (event.pageY - 28) + "px");
-        })
-        .on("mouseout", function (d) {
-            div.transition()
-                .duration(500)
-                .style("opacity", 0);
-        });
+        .join(
+            enter => {
+                enter.append('rect')
+                    .attr('x', d => xScale(d.name))
+                    .attr('y', d => yScale(d.score))
+                    .attr('width', xScale.bandwidth())
+                    .attr('height', d => innerHeight - yScale(d.score))
+                    .style('fill', (d, i) => color(i))
+                    .style('stroke', 'black')
+                    .style('stroke-width', '1')
+                    .on("mousemove", function (event, d) {
+                        div.transition()
+                            .duration(200)
+                            .style("opacity", .9);
+                        div.html("Model: " + d.model + "<br/>" + "Score: " + d.score + "<br/>" + "Rank: " + d.rank)
+                            .style("left", (event.pageX) + "px")
+                            .style("top", (event.pageY - 28) + "px");
+                    })
+                    .on("mouseout", function (d) {
+                        div.transition()
+                            .duration(500)
+                            .style("opacity", 0);
+                    });
+            },
+            update => {
+                update.call(update => {
+                    update.transition()
+                        .delay(500)
+                        .duration(500)
+                        .attr('x', d => xScale(d.name))
+                        .attr('y', d => yScale(d.score))
+                        .attr('width', xScale.bandwidth())
+                        .attr('height', d => innerHeight - yScale(d.score))
+                })
+            }
+        )
 
     const yAxis = d3.axisLeft(yScale);
     g.select('#yAxis').call(yAxis);
@@ -183,27 +198,42 @@ function draw_chart_2() {
 
     var barchart = g.selectAll('rect')
         .data(data)
-        .join('rect')
-        .attr('x', d => xScale(d.name))
-        .attr('y', d => yScale(d.score))
-        .attr('width', xScale.bandwidth())
-        .attr('height', d => innerHeight - yScale(d.score))
-        .style('fill', (d, i) => color(i))
-        .style('stroke', 'black')
-        .style('stroke-width', '1')
-        .on("mousemove", function (event, d) {
-            div.transition()
-                .duration(200)
-                .style("opacity", .9);
-            div.html(d.model + "<br/>" + "Score: " + d.score + "<br/>" + "Rank: " + d.rank)
-                .style("left", (event.pageX) + "px")
-                .style("top", (event.pageY - 28) + "px");
-        })
-        .on("mouseout", function (d) {
-            div.transition()
-                .duration(500)
-                .style("opacity", 0);
-        });
+        .join(
+            enter => {
+                enter.append('rect')
+                    .attr('x', d => xScale(d.name))
+                    .attr('y', d => yScale(d.score))
+                    .attr('width', xScale.bandwidth())
+                    .attr('height', d => innerHeight - yScale(d.score))
+                    .style('fill', (d, i) => color(i))
+                    .style('stroke', 'black')
+                    .style('stroke-width', '1')
+                    .on("mousemove", function (event, d) {
+                        div.transition()
+                            .duration(200)
+                            .style("opacity", .9);
+                        div.html("Model: " + d.model + "<br/>" + "Score: " + d.score + "<br/>" + "Rank: " + d.rank)
+                            .style("left", (event.pageX) + "px")
+                            .style("top", (event.pageY - 28) + "px");
+                    })
+                    .on("mouseout", function (d) {
+                        div.transition()
+                            .duration(500)
+                            .style("opacity", 0);
+                    });
+            },
+            update => {
+                update.call(update => {
+                    update.transition()
+                        .delay(500)
+                        .duration(500)
+                        .attr('x', d => xScale(d.name))
+                        .attr('y', d => yScale(d.score))
+                        .attr('width', xScale.bandwidth())
+                        .attr('height', d => innerHeight - yScale(d.score))
+                })
+            }
+        )
 
     const yAxis = d3.axisLeft(yScale);
     g.select('#yAxis').call(yAxis);
